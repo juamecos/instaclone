@@ -1,0 +1,21 @@
+{
+  "name": "instaclone",
+  "version": "1.0.0",
+  "description": "El servidor de la app Instaclone",
+  "main": "index.js",
+  "author": "Juan José Mena Costa",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon ./index.js"
+  },
+  "dependencies": {
+    "apollo-server": "^2.16.1",
+    "bcrypt": "^5.0.0",
+    "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
