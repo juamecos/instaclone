@@ -17,6 +17,11 @@ const typeDefs = gql`
     token: String
   }
 
+  type UpdateAvatar {
+    status: Boolean
+    urlAvatar: String
+  }
+
   input UserInput {
     name: String!
     username: String!
@@ -37,7 +42,11 @@ const typeDefs = gql`
   type Mutation {
     # User register
     register(input: UserInput): User
+    # User login
     login(input: loginInput): Token
+    #Update avatar: type Upload already defined by qraphQL / we need to define UpdateAvatar type
+    updateAvatar(file: Upload): UpdateAvatar
+    deleteAvatar: Boolean
   }
 `;
 module.exports = typeDefs;
