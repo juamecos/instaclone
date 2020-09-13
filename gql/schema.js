@@ -34,9 +34,19 @@ const typeDefs = gql`
     password: String!
   }
 
+  input UserUpdateInput {
+    name: String
+    email: String
+    currentPassword: String
+    newPassword: String
+    siteWeb: String
+    description: String
+  }
+
   type Query {
     # User
     getUser(id: ID, username: String): User
+    search(search: String): [User]
   }
 
   type Mutation {
@@ -47,6 +57,7 @@ const typeDefs = gql`
     #Update avatar: type Upload already defined by qraphQL / we need to define UpdateAvatar type
     updateAvatar(file: Upload): UpdateAvatar
     deleteAvatar: Boolean
+    updateUser(input: UserUpdateInput): Boolean
   }
 `;
 module.exports = typeDefs;
