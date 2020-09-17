@@ -47,6 +47,11 @@ const typeDefs = gql`
     # User
     getUser(id: ID, username: String): User
     search(search: String): [User]
+
+    #Follow
+    isFollow(username: String!): Boolean
+    getFollowers(username: String!): [User]
+    getFolloweds(username: String!): [User]
   }
 
   type Mutation {
@@ -58,6 +63,10 @@ const typeDefs = gql`
     updateAvatar(file: Upload): UpdateAvatar
     deleteAvatar: Boolean
     updateUser(input: UserUpdateInput): Boolean
+
+    # Follows
+    follow(username: String!): Boolean
+    unFollow(username: String!): Boolean
   }
 `;
 module.exports = typeDefs;
