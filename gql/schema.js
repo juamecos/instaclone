@@ -22,6 +22,26 @@ const typeDefs = gql`
     urlAvatar: String
   }
 
+  type Publish {
+    status: Boolean
+    urlFile: String
+  }
+
+  type Publication {
+    id: ID
+    idUser: ID
+    file: String
+    typeFile: String
+    createAt: String
+  }
+
+  type Comment {
+    idPublication: ID
+    idUser: User
+    comment: String
+    createAt: String
+  }
+
   input UserInput {
     name: String!
     username: String!
@@ -43,6 +63,11 @@ const typeDefs = gql`
     description: String
   }
 
+  input CommentInput {
+    idPublication: ID
+    comment: String
+  }
+
   type Query {
     # User
     getUser(id: ID, username: String): User
@@ -52,6 +77,12 @@ const typeDefs = gql`
     isFollow(username: String!): Boolean
     getFollowers(username: String!): [User]
     getFolloweds(username: String!): [User]
+
+    # Publication
+    getPublications(username: String!): [Publication]
+
+    # Comment
+    getComments(idPublication: ID!): [Comment]
   }
 
   type Mutation {
@@ -64,9 +95,15 @@ const typeDefs = gql`
     deleteAvatar: Boolean
     updateUser(input: UserUpdateInput): Boolean
 
-    # Follows
+    # Follow
     follow(username: String!): Boolean
     unFollow(username: String!): Boolean
+
+    # Publication
+    publish(file: Upload): Publish
+
+    # Comment
+    addComment(input: CommentInput): Comment
   }
 `;
 module.exports = typeDefs;
