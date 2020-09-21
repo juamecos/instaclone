@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const CommentSchema = Schema({
+const LikeSchema = Schema({
   idPublication: {
     type: Schema.Types.ObjectId,
     required: true,
@@ -13,15 +13,6 @@ const CommentSchema = Schema({
     require: true,
     ref: "User",
   },
-  comment: {
-    type: String,
-    trim: true,
-    require: true,
-  },
-  createAt: {
-    type: Date,
-    default: Date.now(),
-  },
 });
 
-module.exports = mongoose.model("Comment", CommentSchema);
+module.exports = mongoose.model("Like", LikeSchema);
