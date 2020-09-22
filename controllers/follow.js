@@ -64,10 +64,32 @@ async function getFolloweds(username) {
   }
   return followedsList;
 }
+
+async function getNotFolloweds(ctx) {
+  const users = await User.find().limit(50);
+
+  const arrayUsers = [];
+
+  for await (const user of users) {
+    // Find users that loged in user is following
+    const isFind = await Follow.findOne({ idUser: ctx.user.id })
+      .where("follow")
+      .equals(user._id);
+    // if not following
+    if (!isFind) {
+      // if its not the former user
+      if (user._id.toString() !== ctx.user.id.toString()) {
+        arrayUsers.push(user);
+      }
+    }
+  }
+  return arrayUsers;
+}
 module.exports = {
   follow,
   isFollow,
   unFollow,
   getFollowers,
   getFolloweds,
+  getNotFolloweds,
 };
